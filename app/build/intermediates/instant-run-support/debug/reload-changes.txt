@@ -1,0 +1,3 @@
+CHANGED,/Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/eu/project/rapid/gvirtus/gvirtus4android/MainActivity$1$override.class
+CHANGED,/Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/android/tools/fd/runtime/AppPatchesLoaderImpl.class
+CHANGED,/Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/eu/project/rapid/gvirtus/gvirtus4android/MainActivity$override.class

@@ -3,10 +3,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 JNIEXPORT jstring JNICALL
-Java_com_example_valentinapelliccia_jnitestapp_Buffer_00024Helper_prepareFloat(JNIEnv *env,
-                                                                          jobject instance,
-                                                                          jfloatArray arr) {
+Java_eu_project_rapid_gvirtus_gvirtus4android_Buffer_00024Helper_prepareFloat(JNIEnv *env,
+                                                                         jobject instance,
+                                                                         jfloatArray arr) {
     jstring result=NULL;
     size_t i;
     size_t j;
@@ -39,14 +40,13 @@ Java_com_example_valentinapelliccia_jnitestapp_Buffer_00024Helper_prepareFloat(J
     result = (*env)->NewStringUTF(env,msg);
     free(msg);
     return result;
-
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_example_valentinapelliccia_jnitestapp_Buffer_00024Helper_preparePtxSource(JNIEnv *env,
-                                                                              jobject instance,
-                                                                              jstring ptxSource_,
-                                                                              jlong size) {
+Java_eu_project_rapid_gvirtus_gvirtus4android_Buffer_00024Helper_preparePtxSource(JNIEnv *env,
+                                                                             jobject instance,
+                                                                             jstring ptxSource_,
+                                                                             jlong size) {
     size_t i,j;
     char *msg=NULL;
     long msg_size=size*2+1;
@@ -89,13 +89,12 @@ printf("name printed as %%x 3 is %02X\n",nativeString[3] & 0xff);*/
     free(msg);
 
     return result;
-
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_example_valentinapelliccia_jnitestapp_Buffer_00024Helper_prepareSingleByte(JNIEnv *env,
-                                                                               jobject instance,
-                                                                               jint i) {
+Java_eu_project_rapid_gvirtus_gvirtus4android_Buffer_00024Helper_prepareSingleByte(JNIEnv *env,
+                                                                              jobject instance,
+                                                                              jint i) {
 
     char *msg=NULL;
     long msg_size=2+1;
@@ -107,5 +106,4 @@ Java_com_example_valentinapelliccia_jnitestapp_Buffer_00024Helper_prepareSingleB
     free(msg);
 
     return result;
-
 }

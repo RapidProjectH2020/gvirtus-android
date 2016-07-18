@@ -2,32 +2,34 @@
 <instant-run
     abi="x86_64,x86"
     api-level="23"
-    density="420dpi"
+    density="560dpi"
     format="7"
-    timestamp="55118705158581"
-    token="2311931735633431355" >
+    timestamp="125047175920897"
+    token="-6104669928764197016" >
 
     <task
         name="javac"
-        duration="1429" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="273" />
+        duration="0" />
     <task
         name="verifier"
-        duration="37" />
+        duration="0" />
 
-    <artifact
-        location="/Users/valentinapelliccia/AndroidStudioProjects/JNITestApp/app/build/outputs/apk/app-debug.apk"
-        type="MAIN" />
-
-    <build timestamp="55118705158581" >
+    <build timestamp="124857052838871" >
         <artifact
-            location="/Users/valentinapelliccia/AndroidStudioProjects/JNITestApp/app/build/outputs/apk/app-debug.apk"
+            location="/Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/outputs/apk/app-debug.apk"
             type="MAIN" />
     </build>
+    <build timestamp="125024533656878" >
+        <artifact
+            location="/Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3/classes.dex"
+            type="DEX" />
+    </build>
+    <build timestamp="125047175920897" />
 
 </instant-run>

@@ -1,4 +1,4 @@
-See file:///Users/valentinapelliccia/AndroidStudioProjects/JNITestApp/app/build/tmp/compileNdkBufferMipsDebugSharedLibraryNdkBufferMainC/output.txt for all output for compileNdkBufferMipsDebugSharedLibraryNdkBufferMainC.
+See file:///Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/tmp/compileNdkBufferMipsDebugSharedLibraryNdkBufferMainC/output.txt for all output for compileNdkBufferMipsDebugSharedLibraryNdkBufferMainC.
 compiling ndkBuffer.c successful.
 
-Finished compileNdkBufferMipsDebugSharedLibraryNdkBufferMainC, see full log file:///Users/valentinapelliccia/AndroidStudioProjects/JNITestApp/app/build/tmp/compileNdkBufferMipsDebugSharedLibraryNdkBufferMainC/output.txt.
+Finished compileNdkBufferMipsDebugSharedLibraryNdkBufferMainC, see full log file:///Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/tmp/compileNdkBufferMipsDebugSharedLibraryNdkBufferMainC/output.txt.

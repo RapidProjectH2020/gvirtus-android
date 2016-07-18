@@ -1,4 +1,4 @@
-See file:///Users/valentinapelliccia/AndroidStudioProjects/JNITestApp/app/build/tmp/linkNdkBufferArm64-v8aDebugSharedLibrary/output.txt for all output for linkNdkBufferArm64-v8aDebugSharedLibrary.
+See file:///Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/tmp/linkNdkBufferArm64-v8aDebugSharedLibrary/output.txt for all output for linkNdkBufferArm64-v8aDebugSharedLibrary.
 linking libndkBuffer.so successful.
 
-Finished linkNdkBufferArm64-v8aDebugSharedLibrary, see full log file:///Users/valentinapelliccia/AndroidStudioProjects/JNITestApp/app/build/tmp/linkNdkBufferArm64-v8aDebugSharedLibrary/output.txt.
+Finished linkNdkBufferArm64-v8aDebugSharedLibrary, see full log file:///Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/tmp/linkNdkBufferArm64-v8aDebugSharedLibrary/output.txt.

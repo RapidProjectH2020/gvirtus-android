@@ -1,3 +1,4 @@
+
 apply plugin: 'com.android.model.application'
 
 model {
@@ -6,7 +7,7 @@ model {
         buildToolsVersion "23.0.3"
 
         defaultConfig {
-            applicationId "com.example.valentinapelliccia.jnitestapp"
+            applicationId "eu.project.rapid.gvirtus.gvirtus4android"
             minSdkVersion.apiLevel 21
             targetSdkVersion.apiLevel 24
             versionCode 1

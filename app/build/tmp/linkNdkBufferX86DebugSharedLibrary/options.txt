@@ -1,8 +1,8 @@
 -shared
 -Wl,-soname,libndkBuffer.so
 -o
-/Users/valentinapelliccia/AndroidStudioProjects/JNITestApp/app/build/intermediates/binaries/debug/obj/x86/libndkBuffer.so
-/Users/valentinapelliccia/AndroidStudioProjects/JNITestApp/app/build/intermediates/objectFiles/x86DebugSharedLibrary/ndkBufferMainC/cv44hy62iaxww84tku2qkm6kw/ndkBuffer.o
+/Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/binaries/debug/obj/x86/libndkBuffer.so
+/Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/objectFiles/x86DebugSharedLibrary/ndkBufferMainC/3j70ure12dnnpong33vwm75vc/ndkBuffer.o
 -Wl,--no-undefined
 -Wl,-z,noexecstack
 -Wl,-z,relro
