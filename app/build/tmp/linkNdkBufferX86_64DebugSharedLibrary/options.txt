@@ -1,0 +1,12 @@
+-shared
+-Wl,-soname,libndkBuffer.so
+-o
+/Users/valentinapelliccia/AndroidStudioProjects/JNITestApp/app/build/intermediates/binaries/debug/obj/x86_64/libndkBuffer.so
+/Users/valentinapelliccia/AndroidStudioProjects/JNITestApp/app/build/intermediates/objectFiles/x86_64DebugSharedLibrary/ndkBufferMainC/cv44hy62iaxww84tku2qkm6kw/ndkBuffer.o
+-Wl,--no-undefined
+-Wl,-z,noexecstack
+-Wl,-z,relro
+-Wl,-z,now
+--sysroot=/Users/valentinapelliccia/Library/Android/sdk/ndk-bundle/platforms/android-24/arch-x86_64
+-Wl,--build-id
+-no-canonical-prefixes

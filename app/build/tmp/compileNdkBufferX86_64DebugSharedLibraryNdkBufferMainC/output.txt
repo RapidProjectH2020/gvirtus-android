@@ -1,0 +1,4 @@
+See file:///Users/valentinapelliccia/AndroidStudioProjects/JNITestApp/app/build/tmp/compileNdkBufferX86_64DebugSharedLibraryNdkBufferMainC/output.txt for all output for compileNdkBufferX86_64DebugSharedLibraryNdkBufferMainC.
+compiling ndkBuffer.c successful.
+
+Finished compileNdkBufferX86_64DebugSharedLibraryNdkBufferMainC, see full log file:///Users/valentinapelliccia/AndroidStudioProjects/JNITestApp/app/build/tmp/compileNdkBufferX86_64DebugSharedLibraryNdkBufferMainC/output.txt.

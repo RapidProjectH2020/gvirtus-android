@@ -1,0 +1,4 @@
+See file:///Users/valentinapelliccia/AndroidStudioProjects/JNITestApp/app/build/tmp/compileNdkBufferArmeabiDebugSharedLibraryNdkBufferMainC/output.txt for all output for compileNdkBufferArmeabiDebugSharedLibraryNdkBufferMainC.
+compiling ndkBuffer.c successful.
+
+Finished compileNdkBufferArmeabiDebugSharedLibraryNdkBufferMainC, see full log file:///Users/valentinapelliccia/AndroidStudioProjects/JNITestApp/app/build/tmp/compileNdkBufferArmeabiDebugSharedLibraryNdkBufferMainC/output.txt.

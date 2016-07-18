@@ -1,0 +1,4 @@
+See file:///Users/valentinapelliccia/AndroidStudioProjects/JNITestApp/app/build/tmp/linkNdkBufferX86DebugSharedLibrary/output.txt for all output for linkNdkBufferX86DebugSharedLibrary.
+linking libndkBuffer.so successful.
+
+Finished linkNdkBufferX86DebugSharedLibrary, see full log file:///Users/valentinapelliccia/AndroidStudioProjects/JNITestApp/app/build/tmp/linkNdkBufferX86DebugSharedLibrary/output.txt.
