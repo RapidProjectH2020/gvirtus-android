@@ -24,8 +24,8 @@ public class CudaDrFrontend {
 		Buffer.AddPointer(0);
 		Buffer.AddInt(devID);
 		String outputbuffer = "";
-		Execute("cuDeviceGet");
-
+		int exit_c = Execute("cuDeviceGet");
+		Util.ExitCode.setExit_code(exit_c);
 		int sizeType = Frontend.in.readByte();
 		for (int i = 0; i < 7; i++)
 			Frontend.in.readByte();
@@ -61,7 +61,8 @@ public class CudaDrFrontend {
 
 		String outbuffer = "";
 		StringBuilder output = new StringBuilder();
-		Execute("cuDeviceGetName");
+		int exit_c = Execute("cuDeviceGetName");
+		Util.ExitCode.setExit_code(exit_c);
 		int sizeType = Frontend.in.readByte();
 
 		for (int i = 0; i < 7; i++)
@@ -90,7 +91,8 @@ public class CudaDrFrontend {
 		Buffer.clear();
 		Buffer.AddPointer(0);
 		String outputbuffer = "";
-		Execute("cuDeviceGetCount");
+		int exit_c = Execute("cuDeviceGetCount");
+		Util.ExitCode.setExit_code(exit_c);
 		int sizeType = Frontend.in.readByte();
 		for (int i = 0; i < 7; i++)
 			Frontend.in.readByte();
@@ -121,7 +123,8 @@ public class CudaDrFrontend {
 		Buffer.AddPointer(0);
 		Buffer.AddInt(device);
 		String outputbuffer = "";
-		Execute("cuDeviceComputeCapability");
+		int exit_c = Execute("cuDeviceComputeCapability");
+		Util.ExitCode.setExit_code(exit_c);
 		int sizeType = Frontend.in.readByte();
 		for (int i = 0; i < 7; i++)
 			Frontend.in.readByte();
@@ -175,7 +178,8 @@ public class CudaDrFrontend {
 		Buffer.AddInt(attribute);
 		Buffer.AddInt(device);
 		String outputbuffer = "";
-		Execute("cuDeviceGetAttribute");
+		int exit_c = Execute("cuDeviceGetAttribute");
+		Util.ExitCode.setExit_code(exit_c);
 		int sizeType = Frontend.in.readByte();
 		for (int i = 0; i < 7; i++)
 			Frontend.in.readByte();
@@ -206,7 +210,8 @@ public class CudaDrFrontend {
 		for (int i = 0; i < 16; i++)
 			Buffer.AddByte(0);
 		Buffer.AddInt(dev);
-		Execute("cuDeviceTotalMem");
+		int exit_c = Execute("cuDeviceTotalMem");
+		Util.ExitCode.setExit_code(exit_c);
 		for (int i = 0; i < 8; i++)
 			Frontend.in.readByte();
 		long x = Frontend.Transmitter.getLong();
@@ -224,7 +229,8 @@ public class CudaDrFrontend {
 			Buffer.AddByte(bits[i] & 0xFF);
 		}
 		String pointer = "";
-		Execute("cuMemAlloc");
+		int exit_c = Execute("cuMemAlloc");
+		Util.ExitCode.setExit_code(exit_c);
 		pointer = Frontend.Transmitter.getHex(8);
 		return pointer;
 	}
@@ -242,7 +248,8 @@ public class CudaDrFrontend {
 		}
 
 		Buffer.Add(src);
-		Execute("cuMemcpyHtoD");
+		int exit_c = Execute("cuMemcpyHtoD");
+		Util.ExitCode.setExit_code(exit_c);
 
 
 	}
@@ -256,7 +263,8 @@ public class CudaDrFrontend {
 		for (int i = 0; i < bits.length; i++) {
 			Buffer.AddByte(bits[i] & 0xFF);
 		}
-		Execute("cuMemcpyDtoH");
+		int exit_c = Execute("cuMemcpyDtoH");
+		Util.ExitCode.setExit_code(exit_c);
 		for (int i = 0; i <= 7; i++) {
 			Frontend.in.readByte();
 
@@ -274,7 +282,8 @@ public class CudaDrFrontend {
 	public void cuMemFree(String ptr) throws IOException {
 		Buffer.clear();
 		Buffer.Add(ptr);
-		Execute("cuMemFree");
+		int exit_c = Execute("cuMemFree");
+		Util.ExitCode.setExit_code(exit_c);
 
 	}
 
@@ -284,7 +293,8 @@ public class CudaDrFrontend {
 
 		Buffer.clear();
 		Buffer.AddInt(flags);
-		Execute("cuInit");
+		int exit_c = Execute("cuInit");
+		Util.ExitCode.setExit_code(exit_c);
 		return 0;
 	}
 
@@ -294,7 +304,8 @@ public class CudaDrFrontend {
 		Buffer.clear();
 		Buffer.AddInt(flags);
 		Buffer.AddInt(dev);
-		Execute("cuCtxCreate");
+		int exit_c = Execute("cuCtxCreate");
+		Util.ExitCode.setExit_code(exit_c);
 		return Frontend.Transmitter.getHex(8);
 	}
 
@@ -302,7 +313,8 @@ public class CudaDrFrontend {
 
 		Buffer.clear();
 		Buffer.Add(ctx);
-		Execute("cuCtxDestroy");
+		int exit_c = Execute("cuCtxDestroy");
+		Util.ExitCode.setExit_code(exit_c);
 	}
 
 	/* CUDA DRIVER EXECUTION */
@@ -315,7 +327,8 @@ public class CudaDrFrontend {
 		Buffer.Add(sizeofp);
 		Buffer.Add(ptr);
 		Buffer.Add(hfunc);
-		Execute("cuParamSetv");
+		int exit_c = Execute("cuParamSetv");
+		Util.ExitCode.setExit_code(exit_c);
 
 	}
 
@@ -325,7 +338,8 @@ public class CudaDrFrontend {
 		Buffer.AddInt(offset);
 		Buffer.AddInt(value);
 		Buffer.Add(hfunc);
-		Execute("cuParamSeti");
+		int exit_c = Execute("cuParamSeti");
+		Util.ExitCode.setExit_code(exit_c);
 	}
 
 	public void cuParamSetSize(String hfunc, int numbytes) throws IOException {
@@ -333,7 +347,8 @@ public class CudaDrFrontend {
 		Buffer.clear();
 		Buffer.AddInt(numbytes);
 		Buffer.Add(hfunc);
-		Execute("cuParamSetSize");
+		int exit_c = Execute("cuParamSetSize");
+		Util.ExitCode.setExit_code(exit_c);
 	}
 
 	public void cuFuncSetBlockShape(String hfunc, int x, int y, int z) throws IOException {
@@ -343,7 +358,8 @@ public class CudaDrFrontend {
 		Buffer.AddInt(y);
 		Buffer.AddInt(z);
 		Buffer.Add(hfunc);
-		Execute("cuFuncSetBlockShape");
+		int exit_c = Execute("cuFuncSetBlockShape");
+		Util.ExitCode.setExit_code(exit_c);
 	}
 
 	public void cuFuncSetSharedSize(String hfunc, int bytes) throws IOException {
@@ -354,7 +370,8 @@ public class CudaDrFrontend {
 			Buffer.AddByte(bits[i] & 0xFF);
 		}
 		Buffer.Add(hfunc);
-		Execute("cuFuncSetSharedSize");
+		int exit_c = Execute("cuFuncSetSharedSize");
+		Util.ExitCode.setExit_code(exit_c);
 	}
 
 	public void cuLaunchGrid(String hfunc, int grid_width, int grid_height) throws IOException {
@@ -363,7 +380,8 @@ public class CudaDrFrontend {
 		Buffer.AddInt(grid_width);
 		Buffer.AddInt(grid_height);
 		Buffer.Add(hfunc);
-		Execute("cuLaunchGrid");
+		int exit_c = Execute("cuLaunchGrid");
+		Util.ExitCode.setExit_code(exit_c);
 	}
 
 	/* CUDA DRIVER MODULE */
@@ -387,7 +405,8 @@ public class CudaDrFrontend {
 
 		Buffer.Add(cmodule);
 
-		Execute("cuModuleGetFunction");
+		int exit_c = Execute("cuModuleGetFunction");
+		Util.ExitCode.setExit_code(exit_c);
 		String pointer = "";
 		pointer = Frontend.Transmitter.getHex(8);
 		for (int i = 0; i < Frontend.resultBufferSize - 8; i++) {
@@ -444,7 +463,8 @@ public class CudaDrFrontend {
 			Buffer.AddByte(bit2[i] & 0xFF);
 		}
 
-		Execute("cuModuleLoadDataEx");
+		int exit_c = Execute("cuModuleLoadDataEx");
+		Util.ExitCode.setExit_code(exit_c);
 		String pointer = "";
 		pointer = Frontend.Transmitter.getHex(8);
 		for (int i = 0; i < Frontend.resultBufferSize - 8; i++)
