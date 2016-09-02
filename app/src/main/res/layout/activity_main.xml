@@ -30,5 +30,93 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_dialog_email" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
 
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/form_intro"
+            android:layout_marginTop="15dip"
+            android:layout_marginBottom="25dip"
+            />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/IP"
+            />
+        <EditText
+            android:id="@+id/edit_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/PORT"
+            android:layout_marginTop="15dip"
+            />
+        <EditText
+            android:id="@+id/edit_lastname"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Select input size"
+            android:layout_marginTop="15dip"
+            />
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/size_arrays"
+            android:prompt="@string/size_prompt"
+            />
+
+       <Button
+            android:id="@+id/form_button"
+            android:layout_height="wrap_content"
+            android:text="@string/form_button_label"
+            android:layout_marginTop="15dip"
+            android:layout_marginLeft="90dip"
+            android:layout_width="130dip"
+            />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="mean GPU execution time in ms (with GVirtuS)"
+            android:layout_marginTop="15dip"
+            />
+        <TextView
+            android:id="@+id/resGPU"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/resultsGPU"
+            android:layout_marginTop="15dip"
+            />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="mean CPU execution time in ms (NO GVirtuS)"
+            android:layout_marginTop="15dip"
+            />
+        <TextView
+            android:id="@+id/resCPU"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/resultsCPU"
+            android:layout_marginTop="15dip"
+            />
+
+    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

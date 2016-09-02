@@ -42,6 +42,8 @@ public final class Frontend {
 			in = new DataInputStream(socket.getInputStream());
 		} catch (IOException ex) {
 			// TODO gestire la mancata connessione
+			System.out.println("gestire la mancata connessione");
+
 		}
 
 	}
@@ -55,7 +57,7 @@ public final class Frontend {
 
 	public static int Execute(String routine) throws IOException {
 
-		// System.out.println("Routine called: " + routine);
+		 //System.out.println("Routine called: " + routine);
 		for (int i = 0; i < routine.length(); i++)
 			outputStream.writeByte(routine.charAt(i));
 		outputStream.writeByte(0);

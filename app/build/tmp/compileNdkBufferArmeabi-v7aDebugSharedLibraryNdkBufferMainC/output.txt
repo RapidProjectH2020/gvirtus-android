@@ -1,4 +1,0 @@
-See file:///Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/tmp/compileNdkBufferArmeabi-v7aDebugSharedLibraryNdkBufferMainC/output.txt for all output for compileNdkBufferArmeabi-v7aDebugSharedLibraryNdkBufferMainC.
-compiling ndkBuffer.c successful.
-
-Finished compileNdkBufferArmeabi-v7aDebugSharedLibraryNdkBufferMainC, see full log file:///Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/tmp/compileNdkBufferArmeabi-v7aDebugSharedLibraryNdkBufferMainC/output.txt.

@@ -1,21 +1,41 @@
 package eu.project.rapid.gvirtus.gvirtus4android;
 
         import android.content.Context;
+        import android.net.Uri;
         import android.os.Bundle;
-        import android.support.design.widget.FloatingActionButton;
-        import android.support.design.widget.Snackbar;
-        import android.support.v7.app.AppCompatActivity;
-        import android.support.v7.widget.Toolbar;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+        import android.content.Intent;
+        import android.os.Bundle;
         import android.view.View;
-        import android.view.Menu;
-        import android.view.MenuItem;
+        import android.view.View.OnClickListener;
+        import android.widget.Button;
+        import android.widget.EditText;
         import android.widget.TextView;
+        import android.widget.Toast;
+
+        import com.google.android.gms.appindexing.Action;
+        import com.google.android.gms.appindexing.AppIndex;
+        import com.google.android.gms.common.api.GoogleApiClient;
 
         import java.io.IOException;
-        import java.io.InputStream;
-        import java.nio.charset.Charset;
-
+        import android.widget.ArrayAdapter;
+        import android.widget.Spinner;
 public class MainActivity extends AppCompatActivity {
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
+    private Spinner spinner1;
+    private long meanTimeGPU, meanTimeCPU;
+   // private TextView text_resCPU;// = (TextView) findViewById(R.id.resCPU);
 
     public static float[] constantInit(float[] data, int size, float val) {
         for (int i = 0; i < size; ++i) {
@@ -39,23 +59,132 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        try {
-            System.out.println("Query Device Execution : ");
-            //deviceQuery();
-             matrixMul(getApplicationContext(),4,6,4);
+        final Button button = (Button) findViewById(R.id.form_button);
+        spinner1 = (Spinner) findViewById(R.id.spinner1);
+        spinner1.setPrompt("Select input size !");
+        final TextView text_resGPU= (TextView) findViewById(R.id.resGPU);
+        final TextView text_resCPU= (TextView) findViewById(R.id.resCPU);
+
+        int position = spinner1.getSelectedItemPosition();
+
+        button.setOnClickListener(new OnClickListener() {
+
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                final EditText edit_IP = (EditText)findViewById(R.id.edit_name);
+                final EditText edit_PORT = (EditText)findViewById(R.id.edit_lastname);
+
+                String ip = edit_IP.getText().toString();
+                String port = edit_PORT.getText().toString();
+                int position = spinner1.getSelectedItemPosition();
+
+                System.out.println("*********ip " + ip + "    port " + port +  "Spinner 1 : "+ String.valueOf(spinner1.getSelectedItem()) + "position " + position );
+                try {
+             System.out.println("MatrixMul Execution : ");
+                    String timeGPU;
+                    String timeCPU;
+                    switch(position) {
+
+
+
+                        case 0:
+                            meanTimeGPU = 0;
+                            meanTimeCPU = 0;
+                            for (int i = 0; i < 5; i++)
+                                matrixMul(getApplicationContext(), 8, 12, 8, ip, port);
+
+                            System.out.println("sum time GPU " + meanTimeGPU);
+                            meanTimeGPU = meanTimeGPU/5;
+                            System.out.println("mean time GPU " + meanTimeGPU);
+                             timeGPU = Integer.toString((int) meanTimeGPU);
+                            text_resGPU.setText(timeGPU);
+
+
+                            meanTimeCPU = meanTimeCPU/5;
+                             timeCPU = Integer.toString((int) meanTimeCPU);
+                            text_resCPU.setText(timeCPU);
+
+                            break;
+
+                        case 1:
+                            meanTimeGPU = 0;
+                            meanTimeCPU = 0;
+
+                            for (int i = 0; i < 5; i++)
+                                matrixMul(getApplicationContext(), 16, 24, 16, ip, port);
+                            meanTimeGPU = meanTimeGPU/5;
+                             timeGPU = Integer.toString((int) meanTimeGPU);
+                            text_resGPU.setText(timeGPU);
+                            meanTimeCPU = meanTimeCPU/5;
+                             timeCPU = Integer.toString((int) meanTimeCPU);
+                            text_resCPU.setText(timeCPU);
+                            break;
+                        case 2:
+                            meanTimeGPU = 0;
+                            meanTimeCPU = 0;
+
+                            for (int i = 0; i < 2; i++)
+                                matrixMul(getApplicationContext(), 32, 48, 32, ip, port);
+                            meanTimeGPU = meanTimeGPU/2;
+                             timeGPU = Integer.toString((int) meanTimeGPU);
+                            text_resGPU.setText(timeGPU);
+                            meanTimeCPU = meanTimeCPU/2;
+                             timeCPU = Integer.toString((int) meanTimeCPU);
+                            text_resCPU.setText(timeCPU);
+                            break;
+
+                        case 3: meanTimeGPU = 0;
+                            meanTimeCPU = 0;
+
+                            for (int i = 0; i < 2; i++)
+                                matrixMul(getApplicationContext(), 64, 96, 64, ip, port);
+                            meanTimeGPU = meanTimeGPU/2;
+                             timeGPU = Integer.toString((int) meanTimeGPU);
+                            text_resGPU.setText(timeGPU);
+                            meanTimeCPU = meanTimeCPU/2;
+                             timeCPU = Integer.toString((int) meanTimeCPU);
+                            text_resCPU.setText(timeCPU);
+                            break;
+                        default:
+                            meanTimeGPU = 0;
+                            meanTimeCPU = 0;
+
+                            for (int i = 0; i < 5; i++)
+                                matrixMul(getApplicationContext(), 8, 12, 8, ip, port);
+                            System.out.println("sum time GPU " + meanTimeGPU);
+                            meanTimeGPU = meanTimeGPU/5;
+                            System.out.println("mean time GPU " + meanTimeGPU);
+                            timeGPU = Integer.toString((int) meanTimeGPU);
+                            text_resGPU.setText(timeGPU);
+
+                            meanTimeCPU = meanTimeCPU/5;
+                             timeCPU = Integer.toString((int) meanTimeCPU);
+                            text_resCPU.setText(timeCPU);
+                            break;
+                    }
+
+              //matrixMul(getApplicationContext(), 4, 6, 4, ip, port);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+            }
+        });
+
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -81,23 +210,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    public static void matrixMul(Context x,int widthA,int heightA,int widthB) throws IOException {
+    public  void matrixMul(Context x, int widthA, int heightA, int widthB, String ip, String port) throws IOException {
 
 
         long time1, time2;
         float valB = 0.01f;
 
         System.out.println("matrixMulDrv (Driver API)");
-        CudaDrFrontend driver = new CudaDrFrontend("193.205.230.23",9991);
+        CudaDrFrontend driver = new CudaDrFrontend(ip, Integer.parseInt(port));
+       // CudaDrFrontend driver = new CudaDrFrontend("193.205.230.23", 9991);
 
         driver.cuInit(0);
         time1 = System.currentTimeMillis();
-        String context = driver.cuCtxCreate( 0, 0);
+        String context = driver.cuCtxCreate(0, 0);
         driver.cuDeviceGetName(255, 0);
         driver.cuDeviceGet(0);
         String p = "cuda-kernels/matrixMul_kernel64.ptx";
-        String ptxSource = Util.readAssetFileAsString(x,p);
+        String ptxSource = Util.readAssetFileAsString(x, p);
         int jitNumOptions = 3;
         int[] jitOptions = new int[jitNumOptions];
 
@@ -119,7 +248,6 @@ public class MainActivity extends AppCompatActivity {
         long jitOptVals2 = jitRegCount;
 
 
-
         String cmodule = driver.cuModuleLoadDataEx(ptxSource, jitNumOptions, jitOptions, jitOptVals0,
                 jitOptVals1, jitOptVals2);
 
@@ -134,6 +262,11 @@ public class MainActivity extends AppCompatActivity {
         int WC = WB; // Matrix C width
         int HC = HA; // Matrix C height
         System.out.println("WA:" + WA + " HA:" + HA + " WB:" + WB + " HB:" + HB);
+
+        Toast.makeText(getApplicationContext(),
+                "WA:" + WA + " HA:" + HA + " WB:" + WB + " HB:" + HB, Toast.LENGTH_LONG).show();
+
+
         int size_A = WA * HA;
         int mem_size_A = Float.SIZE / 8 * size_A;
         float[] h_A = new float[size_A];
@@ -146,9 +279,9 @@ public class MainActivity extends AppCompatActivity {
         h_B = constantInit(h_B, size_B, valB);
         // allocate device memory
         String d_A;
-        d_A = driver.cuMemAlloc( mem_size_A);
+        d_A = driver.cuMemAlloc(mem_size_A);
         String d_B;
-        d_B = driver.cuMemAlloc( mem_size_B);
+        d_B = driver.cuMemAlloc(mem_size_B);
         driver.cuMemcpyHtoD(d_A, h_A, mem_size_A);
         driver.cuMemcpyHtoD(d_B, h_B, mem_size_B);
         // allocate device memory for result
@@ -166,12 +299,12 @@ public class MainActivity extends AppCompatActivity {
         // setup execution parameters
 
 
-        driver.cuParamSetv( cfunction, offset, d_C, Util.Sizeof.LONG);
+        driver.cuParamSetv(cfunction, offset, d_C, Util.Sizeof.LONG);
 
         offset += Util.Sizeof.LONG;
-        driver.cuParamSetv( cfunction, offset, d_A, Util.Sizeof.LONG);
+        driver.cuParamSetv(cfunction, offset, d_A, Util.Sizeof.LONG);
         offset += Util.Sizeof.LONG;
-        driver.cuParamSetv( cfunction, offset, d_B, Util.Sizeof.LONG);
+        driver.cuParamSetv(cfunction, offset, d_B, Util.Sizeof.LONG);
         offset += Util.Sizeof.LONG;
 
         int Matrix_Width_A = WA;
@@ -180,30 +313,31 @@ public class MainActivity extends AppCompatActivity {
         int Sizeof_Matrix_Width_B = Util.Sizeof.INT;
 
 
-        driver.cuParamSeti( cfunction, offset, Matrix_Width_A);
+        driver.cuParamSeti(cfunction, offset, Matrix_Width_A);
 
 
         offset += Sizeof_Matrix_Width_A;
 
 
-        driver.cuParamSeti( cfunction, offset, Matrix_Width_B);
+        driver.cuParamSeti(cfunction, offset, Matrix_Width_B);
         offset += Sizeof_Matrix_Width_B;
 
 
-        driver.cuParamSetSize( cfunction, offset);
+        driver.cuParamSetSize(cfunction, offset);
 
 
-        driver.cuFuncSetBlockShape( cfunction, block_size, block_size, grid.z);
+        driver.cuFuncSetBlockShape(cfunction, block_size, block_size, grid.z);
 
-        driver.cuFuncSetSharedSize( cfunction, 2 * block_size * block_size * (Float.SIZE / 8));
+        driver.cuFuncSetSharedSize(cfunction, 2 * block_size * block_size * (Float.SIZE / 8));
 
-        driver.cuLaunchGrid( cfunction, grid.x, grid.y);
+        driver.cuLaunchGrid(cfunction, grid.x, grid.y);
 
-        h_C =  driver.cuMemcpyDtoH( d_C, mem_size_C);
+        h_C = driver.cuMemcpyDtoH(d_C, mem_size_C);
 
 
         time2 = System.currentTimeMillis();
         System.out.println("Execution time WITH GPU in ms : " + (time2 - time1));
+        meanTimeGPU = meanTimeGPU + (time2 - time1);
         boolean correct = true;
         System.out.println("Checking computed result for correctness...");
         System.out.println("check! Matrix[" + 0 + "]=" + h_C[0] + ", ref=" + WA * valB);
@@ -218,10 +352,10 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println(correct ? "Result = PASS" : "Result = FAIL");
 
-        driver.cuMemFree( d_A);
-        driver.cuMemFree( d_B);
-        driver.cuMemFree( d_C);
-        driver.cuCtxDestroy( context);
+        driver.cuMemFree(d_A);
+        driver.cuMemFree(d_B);
+        driver.cuMemFree(d_C);
+        driver.cuCtxDestroy(context);
 
         time1 = System.currentTimeMillis();
         float[][] a = generaMatrice(HA, WA, 1.0f);
@@ -230,6 +364,7 @@ public class MainActivity extends AppCompatActivity {
         float[][] matC = prodotto(a, b);
         time2 = System.currentTimeMillis();
         System.out.println("Execution time (CPU) in ms : " + (time2 - time1));
+       meanTimeCPU = meanTimeCPU + (time2 - time1);
         System.out.println("check! Matrix[" + 0 + "]=" + matC[0][0] + "%.8f, ref=" + WA * valB);
 
     }
@@ -262,13 +397,12 @@ public class MainActivity extends AppCompatActivity {
     public static void deviceQuery() throws IOException {
 
         int exit_code = 1;
-        CudaRtFrontend runtime = new CudaRtFrontend("193.205.230.23",9991);
+        CudaRtFrontend runtime = new CudaRtFrontend("193.205.230.23", 9991);
 
         System.out.println("Starting...\nCUDA Device Query (Runtime API) version (CUDART static linking)\n\n");
 
         int deviceCount = runtime.cudaGetDeviceCount();
         if (Util.ExitCode.getExit_code() != 0) {
-            // if (1 != 0) {
 
             System.out.println("cudaGetDeviceCount returned " + Util.ExitCode.getExit_code() + " -> "
                     + runtime.cudaGetErrorString(Util.ExitCode.getExit_code()));
@@ -349,5 +483,44 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://eu.project.rapid.gvirtus.gvirtus4android/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://eu.project.rapid.gvirtus.gvirtus4android/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
+    }
 }
 

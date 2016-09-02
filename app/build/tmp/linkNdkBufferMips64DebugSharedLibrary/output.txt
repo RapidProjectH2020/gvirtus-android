@@ -1,4 +1,0 @@
-See file:///Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/tmp/linkNdkBufferMips64DebugSharedLibrary/output.txt for all output for linkNdkBufferMips64DebugSharedLibrary.
-linking libndkBuffer.so successful.
-
-Finished linkNdkBufferMips64DebugSharedLibrary, see full log file:///Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/tmp/linkNdkBufferMips64DebugSharedLibrary/output.txt.

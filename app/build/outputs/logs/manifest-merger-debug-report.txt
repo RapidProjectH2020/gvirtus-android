@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/src/main/AndroidManifest.xml:2:1-32:12
+ADDED from /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/src/main/AndroidManifest.xml:2:1-36:12
 	package
 		ADDED from /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/src/main/AndroidManifest.xml:3:5-55
 		INJECTED from /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/src/main/AndroidManifest.xml
@@ -54,7 +54,7 @@ ADDED from /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/s
 	android:name
 		ADDED from /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/src/main/AndroidManifest.xml:13:22-78
 application
-ADDED from /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/src/main/AndroidManifest.xml:14:5-30:19
+ADDED from /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/src/main/AndroidManifest.xml:14:5-34:19
 MERGED from [com.android.support:appcompat-v7:24.0.0] /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-v4:24.0.0] /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-vector-drawable:24.0.0] /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.0.0/AndroidManifest.xml:23:5-20
@@ -72,6 +72,9 @@ MERGED from [com.android.support:support-vector-drawable:24.0.0] /Users/valentin
 MERGED from [com.android.support:support-v4:24.0.0] /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:animated-vector-drawable:24.0.0] /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.0.0/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-vector-drawable:24.0.0] /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.0.0/AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:support-v4:24.0.0] /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-appindexing:8.1.0] /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.1.0/AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-basement:8.1.0] /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/AndroidManifest.xml:20:5-24:19
 MERGED from [com.android.support:support-v4:24.0.0] /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/AndroidManifest.xml:25:5-20
 	android:label
 		ADDED from /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/src/main/AndroidManifest.xml:17:9-41
@@ -101,6 +104,13 @@ category#android.intent.category.LAUNCHER
 ADDED from /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/src/main/AndroidManifest.xml:27:17-77
 	android:name
 		ADDED from /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/src/main/AndroidManifest.xml:27:27-74
+meta-data#com.google.android.gms.version
+ADDED from /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/src/main/AndroidManifest.xml:31:9-33:69
+MERGED from [com.google.android.gms:play-services-basement:8.1.0] /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/AndroidManifest.xml:21:9-23:69
+	android:value
+		ADDED from /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/src/main/AndroidManifest.xml:33:13-66
+	android:name
+		ADDED from /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/src/main/AndroidManifest.xml:32:13-58
 uses-sdk
 INJECTED from /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:24.0.0] /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/AndroidManifest.xml:21:5-23:78
@@ -121,6 +131,9 @@ MERGED from [com.android.support:support-vector-drawable:24.0.0] /Users/valentin
 MERGED from [com.android.support:support-v4:24.0.0] /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/AndroidManifest.xml:21:5-23:54
 MERGED from [com.android.support:animated-vector-drawable:24.0.0] /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-vector-drawable:24.0.0] /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.0.0/AndroidManifest.xml:21:5-43
+MERGED from [com.android.support:support-v4:24.0.0] /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-appindexing:8.1.0] /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.1.0/AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-basement:8.1.0] /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/AndroidManifest.xml:18:5-42
 MERGED from [com.android.support:support-v4:24.0.0] /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/AndroidManifest.xml:21:5-23:54
 	tools:overrideLibrary
 		ADDED from [com.android.support:appcompat-v7:24.0.0] /Users/valentinapelliccia/AndroidStudioProjects/GVirtuS4Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/AndroidManifest.xml:23:9-75
