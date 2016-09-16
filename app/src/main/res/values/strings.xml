@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">GVirtuS4Android</string>
+    <string name="action_settings">Settings</string>
+    <string name="form_button_label">Run</string>
+    <string name="form_intro">Run</string>
+    <string name="IP">Insert address IP of remote GPU server</string>
+    <string name="PORT">Insert number PORT of remote GPU server</string>
+    <string name="label_form_name">..:</string>
+    <string name="label_form_lastname">..:</string>
+    <string name="resultsGPU">...</string>
+    <string name="resultsCPU">...</string>
+    <string name="size_prompt">Choose a dimension (input size)</string>
+    <string name="iter_prompt">Choose the number of replications</string>
+    <string name="rapidtext">Cloud computing as a technology trend has caught up fast in recent years by providing more and more services to end users in a reliable and efficient manner. In this context, RAPID proposes the development of an efficient heterogeneous CPU-GPU cloud computing infrastructure, which can be used to seamlessly offload CPU-based and GPU-based (using OpenCL API) tasks of applications running on low-power devices such as smartphones, notebooks, tablets, portable/wearable devices, robots, and cars to more powerful devices over a heterogeneous network (HetNet). In addition, RAPID proposes a secure unified model where almost any device can operate as an accelerated entity and/or as an accelerator serving other less powerful devices. Finally, a RAPID device can probe a Directory Server, which includes information for the accelerators, in order to automatically find and connect to the appropriate accelerators.</string>
+    <string name="eustring">This project has received funding from the European Union’s Horizon 2020 research and
+innovation programme under grant agreement No 644312</string>
+    <string name="gvirtustext">GVirtuS is a generic virtualization framework for offloading and virtualization solutions based on a split-driver model. GVirtuS offers virtualization support for generic libraries such as accelerator libraries (CUDA), with the advantage of independence from all involved technologies: hypervisor, communicator and target of virtualization. The back-end and the front-end of GVirtuS cooperate independently from the communicator. This feature is possible thanks to the plug-in design of the framework, enabling the choice of different communicator or different stub-libraries mocking the virtualization target.
+The Android/Java version of GVirtuS called GVirtuS4j is a pure Java, Android friendly, front-end incarnation. Honoring the GVirtuS general architecture, we choose to implement a Java frontend fully compatible with the regular GVirtuS back-end allowing diverse and different deployment scenarios on both HPC clusters and cloud-shared resources.
+In order to make Android GPU acceleration available to all Android based devices regardless the CUDA availability on the specific device, we choose to implement a CUDA kernel offloading system minimizing the impact on the GPU programming style. Following our approach, the developer implements, executes and tests the kernel on a familiar desktop/server CUDA environment.
+</string>
+    <string name="help">To run GVirtuS - DEMO application follow these steps:\n
+    1. Go in settings\n
+        \t1. Insert IP address of backend\n
+        \t2. Insert Port of backend\n
+        \t3. Save\n
+        \t4. Restart APP (automatic)\n
+    2. Select input size of the matrices and number of replications  or click on one of the preset test\n
+            \t\t1. test1 : 5 replications with size A[256,384] * B[256,256]\n
+            \t\t2. test2 : 2 replications with size A[512,768] * B[512,512]\n
+            \t\t3. ALL4 : single replications with 4 sizes increasing (from 128 to 768)\n
+            \t\t4. ALL9 : single replications with 9 sizes increasing (from 128 to 2048)\n
+    3. click on RUN button</string>
+
+    <string-array name="size_arrays">
+        <item>A[128,192] * B[128,128]</item>
+        <item>A[256,384] * B[256,256]</item>
+        <item>A[512,768] * B[512,512]</item>
+        <item>A[768,1152] * B[768,768]</item>
+        <item>A[1024,1536] * B[1024,1024]</item>
+        <item>A[1280,1920] * B[1280,1280]</item>
+        <item>A[1536,2304] * B[1536,1536]</item>
+        <item>A[1792,2688] * B[1792,1792]</item>
+        <item>A[2048,3072] * B[2048,2048]</item>
+
+    </string-array>
+    <string-array name="iter_arrays">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+
+    </string-array>
+    <string name="title_activity_settings">Settings</string>
+
+
+</resources>

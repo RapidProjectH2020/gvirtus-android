@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/carmineferraro/Downloads/GVirtuS4A/app/build/intermediates/res/merged/debug/drawable-v21/ic_sync_black_24dp.xml",
+        "source": "/Users/carmineferraro/Downloads/GVirtuS4A/app/src/main/res/drawable-v21/ic_sync_black_24dp.xml"
+    },
+    {
+        "merged": "/Users/carmineferraro/Downloads/GVirtuS4A/app/build/intermediates/res/merged/debug/drawable-v21/ic_info_black_24dp.xml",
+        "source": "/Users/carmineferraro/Downloads/GVirtuS4A/app/src/main/res/drawable-v21/ic_info_black_24dp.xml"
+    },
+    {
+        "merged": "/Users/carmineferraro/Downloads/GVirtuS4A/app/build/intermediates/res/merged/debug/drawable-v21/ic_notifications_black_24dp.xml",
+        "source": "/Users/carmineferraro/Downloads/GVirtuS4A/app/src/main/res/drawable-v21/ic_notifications_black_24dp.xml"
+    }
+]

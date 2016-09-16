@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SmileyLoadingView"><attr format="integer" name="duration"/><attr format="dimension" name="strokeWidth"/><attr format="color" name="strokeColor"/><attr format="integer" name="animRepeatCount"/></declare-styleable>
+    <string name="app_name">library</string>
+</resources>

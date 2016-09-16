@@ -1,0 +1,10 @@
+int attr animRepeatCount 0x7f010003
+int attr duration 0x7f010000
+int attr strokeColor 0x7f010002
+int attr strokeWidth 0x7f010001
+int string app_name 0x7f020000
+int[] styleable SmileyLoadingView { 0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003 }
+int styleable SmileyLoadingView_animRepeatCount 3
+int styleable SmileyLoadingView_duration 0
+int styleable SmileyLoadingView_strokeColor 2
+int styleable SmileyLoadingView_strokeWidth 1
