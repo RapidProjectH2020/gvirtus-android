@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         log.setMovementMethod(new ScrollingMovementMethod());
         SharedPreferences prefs = getSharedPreferences("GVIRTUS_PREF", MODE_PRIVATE);
         ip = prefs.getString("ip", null);
-        if (!ip.equals("")) {
+        if (ip != null) {
             port  = prefs.getString("port", null);
         } else{
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this,R.style.Dialog);
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         text_resGPU= (TextView) findViewById(R.id.resGPU);
         text_resCPU= (TextView) findViewById(R.id.resCPU);
         iteration= spinner2.getSelectedItemPosition()+1;
-        if (ip.equals("") || port.equals("")){
+        if (ip == null || port == null){
            lockButton();
         }
         if (!check3gConnection() ){
@@ -162,10 +162,10 @@ public class MainActivity extends AppCompatActivity {
                                     @Override
                                     public void run() {
                                         meanTimeGPU = (meanTimeGPU / iteration)/1000;
-                                        timeGPU[0] = Float.toString( meanTimeGPU);
+                                        timeGPU[0] = String.format("%.2f", meanTimeGPU);
                                         text_resGPU.setText(timeGPU[0] + " sec");
                                         meanTimeCPU = (meanTimeCPU / iteration)/1000;
-                                        timeCPU[0] = Float.toString( meanTimeCPU);
+                                        timeCPU[0] = String.format("%.2f", meanTimeCPU);
                                         text_resCPU.setText(timeCPU[0]+ " sec");
                                     }
                                 });
@@ -246,10 +246,10 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     meanTimeGPU = (meanTimeGPU / iteration)/1000;
-                                    timeGPU[0] = Float.toString( meanTimeGPU);
+                                    timeGPU[0] = String.format("%.2f", meanTimeGPU);
                                     text_resGPU.setText(timeGPU[0] + " sec");
                                     meanTimeCPU = (meanTimeCPU / iteration)/1000;
-                                    timeCPU[0] = Float.toString( meanTimeCPU);
+                                    timeCPU[0] = String.format("%.2f", meanTimeCPU);
                                     text_resCPU.setText(timeCPU[0] + " sec");
                                 }
                             });
@@ -475,10 +475,10 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     meanTimeGPU = (meanTimeGPU / iteration)/1000;
-                                    timeGPU[0] = Float.toString( meanTimeGPU);
+                                    timeGPU[0] = String.format("%.2f", meanTimeGPU);
                                     text_resGPU.setText(timeGPU[0] + " sec");
                                     meanTimeCPU = (meanTimeCPU / iteration)/1000;
-                                    timeCPU[0] = Float.toString( meanTimeCPU);
+                                    timeCPU[0] = String.format("%.2f", meanTimeCPU);
                                     text_resCPU.setText(timeCPU[0] + " sec");
                                 }
                             });
@@ -1038,6 +1038,12 @@ public class MainActivity extends AppCompatActivity {
 
         graph.getLegendRenderer().setVisible(true);
         graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
+
+        StaticLabelsFormatter staticf = new StaticLabelsFormatter(graph);
+        staticf.setHorizontalLabels(new String[]{"",""});
+        graph.getGridLabelRenderer().setLabelFormatter(staticf);
+        graph.getGridLabelRenderer().setHorizontalAxisTitle("Size of test");
+        graph.getGridLabelRenderer().setVerticalAxisTitle("Time in sec");
 
         graph.addSeries(series1);
         graph.addSeries(series2);

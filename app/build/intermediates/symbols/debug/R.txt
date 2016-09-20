@@ -438,7 +438,7 @@ int drawable logoparth 0x7f020048
 int drawable notification_template_icon_bg 0x7f02004a
 int drawable ok 0x7f020049
 int id ab_txt1 0x7f0d0052
-int id ab_txt2 0x7f0d0056
+int id ab_txt2 0x7f0d0055
 int id about 0x7f0d008b
 int id action0 0x7f0d0079
 int id action_bar 0x7f0d0040
@@ -497,8 +497,8 @@ int id id_spin2 0x7f0d0072
 int id ifRoom 0x7f0d0018
 int id image 0x7f0d0028
 int id imageView 0x7f0d005b
-int id imageView2 0x7f0d004f
-int id imageView3 0x7f0d0050
+int id imageView2 0x7f0d0051
+int id imageView3 0x7f0d004f
 int id imageView4 0x7f0d0053
 int id img 0x7f0d0087
 int id info 0x7f0d0084
@@ -562,9 +562,9 @@ int id textView 0x7f0d0061
 int id textView2 0x7f0d005d
 int id textView3 0x7f0d005f
 int id textView4 0x7f0d005c
-int id textView5 0x7f0d0051
+int id textView5 0x7f0d0050
 int id textView6 0x7f0d0054
-int id textView7 0x7f0d0055
+int id textView7 0x7f0d0056
 int id text_ip 0x7f0d0074
 int id text_log 0x7f0d006d
 int id text_log_dv 0x7f0d005e

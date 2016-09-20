@@ -1617,7 +1617,7 @@ containing a value of this type.
     }
     public static final class id {
         public static final int ab_txt1=0x7f0d0052;
-        public static final int ab_txt2=0x7f0d0056;
+        public static final int ab_txt2=0x7f0d0055;
         public static final int about=0x7f0d008b;
         public static final int action0=0x7f0d0079;
         public static final int action_bar=0x7f0d0040;
@@ -1676,8 +1676,8 @@ containing a value of this type.
         public static final int ifRoom=0x7f0d0018;
         public static final int image=0x7f0d0028;
         public static final int imageView=0x7f0d005b;
-        public static final int imageView2=0x7f0d004f;
-        public static final int imageView3=0x7f0d0050;
+        public static final int imageView2=0x7f0d0051;
+        public static final int imageView3=0x7f0d004f;
         public static final int imageView4=0x7f0d0053;
         public static final int img=0x7f0d0087;
         public static final int info=0x7f0d0084;
@@ -1741,9 +1741,9 @@ containing a value of this type.
         public static final int textView2=0x7f0d005d;
         public static final int textView3=0x7f0d005f;
         public static final int textView4=0x7f0d005c;
-        public static final int textView5=0x7f0d0051;
+        public static final int textView5=0x7f0d0050;
         public static final int textView6=0x7f0d0054;
-        public static final int textView7=0x7f0d0055;
+        public static final int textView7=0x7f0d0056;
         public static final int text_ip=0x7f0d0074;
         public static final int text_log=0x7f0d006d;
         public static final int text_log_dv=0x7f0d005e;

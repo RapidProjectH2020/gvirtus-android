@@ -92,10 +92,6 @@
         "source": "/Users/carmineferraro/Downloads/GVirtuS4A/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/abc_activity_chooser_view_list_item.xml"
     },
     {
-        "merged": "/Users/carmineferraro/Downloads/GVirtuS4A/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
-        "source": "/Users/carmineferraro/Downloads/GVirtuS4A/app/src/main/res/layout/activity_main.xml"
-    },
-    {
         "merged": "/Users/carmineferraro/Downloads/GVirtuS4A/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
         "source": "/Users/carmineferraro/Downloads/GVirtuS4A/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/abc_alert_dialog_material.xml"
     },
@@ -132,20 +128,8 @@
         "source": "/Users/carmineferraro/Downloads/GVirtuS4A/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/abc_action_mode_close_item_material.xml"
     },
     {
-        "merged": "/Users/carmineferraro/Downloads/GVirtuS4A/app/build/intermediates/res/merged/debug/layout/activity_device_query.xml",
-        "source": "/Users/carmineferraro/Downloads/GVirtuS4A/app/src/main/res/layout/activity_device_query.xml"
-    },
-    {
-        "merged": "/Users/carmineferraro/Downloads/GVirtuS4A/app/build/intermediates/res/merged/debug/layout/activity_about.xml",
-        "source": "/Users/carmineferraro/Downloads/GVirtuS4A/app/src/main/res/layout/activity_about.xml"
-    },
-    {
         "merged": "/Users/carmineferraro/Downloads/GVirtuS4A/app/build/intermediates/res/merged/debug/layout/notification_template_media.xml",
         "source": "/Users/carmineferraro/Downloads/GVirtuS4A/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/notification_template_media.xml"
-    },
-    {
-        "merged": "/Users/carmineferraro/Downloads/GVirtuS4A/app/build/intermediates/res/merged/debug/layout/activity_settings.xml",
-        "source": "/Users/carmineferraro/Downloads/GVirtuS4A/app/src/main/res/layout/activity_settings.xml"
     },
     {
         "merged": "/Users/carmineferraro/Downloads/GVirtuS4A/app/build/intermediates/res/merged/debug/layout/toast_info.xml",
@@ -182,10 +166,6 @@
     {
         "merged": "/Users/carmineferraro/Downloads/GVirtuS4A/app/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
         "source": "/Users/carmineferraro/Downloads/GVirtuS4A/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/abc_screen_simple.xml"
-    },
-    {
-        "merged": "/Users/carmineferraro/Downloads/GVirtuS4A/app/build/intermediates/res/merged/debug/layout/activity_help.xml",
-        "source": "/Users/carmineferraro/Downloads/GVirtuS4A/app/src/main/res/layout/activity_help.xml"
     },
     {
         "merged": "/Users/carmineferraro/Downloads/GVirtuS4A/app/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
