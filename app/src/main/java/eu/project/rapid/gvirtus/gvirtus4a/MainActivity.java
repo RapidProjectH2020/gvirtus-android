@@ -41,13 +41,13 @@ import cn.refactor.smileyloadingview.lib.SmileyLoadingView;
 public class MainActivity extends AppCompatActivity {
 
     private float meanTimeGPU, meanTimeCPU;
-    Spinner spinner1,spinner2;
-    Button btn_run,btn_all4,btn_test1,btn_test2,btn_all9;
-    TextView text_resGPU,text_resCPU,log;
-    int iteration=0;
-    String ip,port;
+    Spinner spinner1, spinner2;
+    Button btn_run, btn_all4, btn_test1, btn_test2, btn_all9;
+    TextView text_resGPU, text_resCPU, log;
+    int iteration = 0;
+    String ip, port;
     SmileyLoadingView load;
-    int wa=0,wb=0;
+    int wa = 0, wb = 0;
 
 
     @Override
@@ -62,42 +62,42 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("GVIRTUS_PREF", MODE_PRIVATE);
         ip = prefs.getString("ip", null);
         if (ip != null) {
-            port  = prefs.getString("port", null);
-        } else{
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this,R.style.Dialog);
+            port = prefs.getString("port", null);
+        } else {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this, R.style.Dialog);
             alertDialogBuilder.setTitle("Alert!");
             alertDialogBuilder
                     .setMessage("Ip not found! Do you want setting now?")
                     .setCancelable(false)
-                    .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,int id) {
-                            Intent setIntent= new Intent(getApplicationContext(),SettingsActivity.class);
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent setIntent = new Intent(getApplicationContext(), SettingsActivity.class);
                             startActivity(setIntent);
                             finish();
                         }
                     })
-                    .setNegativeButton("No",new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,int id) {
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
                             dialog.cancel();
                         }
                     });
             alertDialogBuilder.show();
         }
-        if (port == null){
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this,R.style.Dialog);
+        if (port == null) {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this, R.style.Dialog);
             alertDialogBuilder.setTitle("Alert!");
             alertDialogBuilder
                     .setMessage("Port not found! Do you want setting now?")
                     .setCancelable(false)
-                    .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,int id) {
-                            Intent setIntent= new Intent(getApplicationContext(),SettingsActivity.class);
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent setIntent = new Intent(getApplicationContext(), SettingsActivity.class);
                             startActivity(setIntent);
                             finish();
                         }
                     })
-                    .setNegativeButton("No",new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,int id) {
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
                             dialog.cancel();
                         }
                     });
@@ -110,16 +110,16 @@ public class MainActivity extends AppCompatActivity {
         btn_test1 = (Button) findViewById(R.id.btn_test1);
         btn_test2 = (Button) findViewById(R.id.btn_test2);
         btn_all4 = (Button) findViewById(R.id.btn_all4);
-        text_resGPU= (TextView) findViewById(R.id.resGPU);
-        text_resCPU= (TextView) findViewById(R.id.resCPU);
-        iteration= spinner2.getSelectedItemPosition()+1;
-        if (ip == null || port == null){
-           lockButton();
+        text_resGPU = (TextView) findViewById(R.id.resGPU);
+        text_resCPU = (TextView) findViewById(R.id.resCPU);
+        iteration = spinner2.getSelectedItemPosition() + 1;
+        if (ip == null || port == null) {
+            lockButton();
         }
-        if (!check3gConnection() ){
-            if (!checkWifiConnection()){
+        if (!check3gConnection()) {
+            if (!checkWifiConnection()) {
                 lockButton();
-                SimpleToast.error(getApplicationContext(),"No client connections available!");
+                SimpleToast.error(getApplicationContext(), "No client connections available!");
             }
         }
 
@@ -130,82 +130,83 @@ public class MainActivity extends AppCompatActivity {
                 lockButton();
                 final String[] timeGPU = new String[1];
                 final String[] timeCPU = new String[1];
-                iteration=5;
-                wa=8;
-                wb=12;
-                spinner2.setSelection(iteration-1);
+                iteration = 5;
+                wa = 8;
+                wb = 12;
+                spinner2.setSelection(iteration - 1);
                 spinner1.setSelection(1);
                 meanTimeGPU = 0;
                 meanTimeCPU = 0;
-                    Tasks.executeInBackground(getApplicationContext(), new BackgroundWork<Void>() {
-                        @Override
-                        public Void doInBackground() throws Exception {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    text_resCPU.setText("");
-                                    text_resGPU.setText("");
-                                    load.start();
-                                }
-                            });
-                            for (int i = 0; i < iteration; i++) {
-                                final int finalI = i;
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                       log.append("\n\nReplication "+(finalI +1)+" is running...");
-                                       log.append("\n"+ DateFormat.getDateTimeInstance().format(new Date()));
-                                    }
-                                });
-                                matrixMul(getApplicationContext(), wa, wb, wa, ip, port);
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        meanTimeGPU = (meanTimeGPU / iteration)/1000;
-                                        timeGPU[0] = String.format("%.2f", meanTimeGPU);
-                                        text_resGPU.setText(timeGPU[0] + " sec");
-                                        meanTimeCPU = (meanTimeCPU / iteration)/1000;
-                                        timeCPU[0] = String.format("%.2f", meanTimeCPU);
-                                        text_resCPU.setText(timeCPU[0]+ " sec");
-                                    }
-                                });
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        drawBarGraph(meanTimeCPU, meanTimeGPU);
-                                    }
-                                });
+                Tasks.executeInBackground(getApplicationContext(), new BackgroundWork<Void>() {
+                    @Override
+                    public Void doInBackground() throws Exception {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                text_resCPU.setText("");
+                                text_resGPU.setText("");
+                                load.start();
                             }
-                            return null;
-                        }
-                    }, new Completion<Void>() {
-                        @Override
-                        public void onSuccess(Context context,Void v) {
-                            SimpleToast.ok(getApplicationContext(),"Task completed!");
+                        });
+                        for (int i = 0; i < iteration; i++) {
+                            final int finalI = i;
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    load.stop();
-                                    unlockButton();
-                                    log.append("\n"+ DateFormat.getDateTimeInstance().format(new Date()));
+                                    log.append("\n\nReplication " + (finalI + 1) + " is running...");
+                                    log.append("\n" + DateFormat.getDateTimeInstance().format(new Date()));
+                                }
+                            });
+                            matrixMul(getApplicationContext(), wa, wb, wa, ip, port);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    meanTimeGPU = (meanTimeGPU / iteration) / 1000;
+                                    timeGPU[0] = String.format("%.2f", meanTimeGPU);
+                                    text_resGPU.setText(timeGPU[0] + " sec");
+                                    meanTimeCPU = (meanTimeCPU / iteration) / 1000;
+                                    timeCPU[0] = String.format("%.2f", meanTimeCPU);
+                                    text_resCPU.setText(timeCPU[0] + " sec");
+                                }
+                            });
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    drawBarGraph(meanTimeCPU, meanTimeGPU);
+                                }
+                            });
+                        }
+                        return null;
+                    }
+                }, new Completion<Void>() {
+                    @Override
+                    public void onSuccess(Context context, Void v) {
+                        SimpleToast.ok(getApplicationContext(), "Task completed!");
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                load.stop();
+                                unlockButton();
+                                log.append("\n" + DateFormat.getDateTimeInstance().format(new Date()));
 
-                                }
-                            });
-                        }
-                        @Override
-                        public void onError(Context context, Exception e) {
-                            SimpleToast.error(getApplicationContext(), "Server not available!");
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    load.stop();
-                                    unlockButton();
-                                    log.append("\n"+ DateFormat.getDateTimeInstance().format(new Date()));
-                                }
-                            });
-                        }
-                    });
-                }
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onError(Context context, Exception e) {
+                        SimpleToast.error(getApplicationContext(), "Server not available!");
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                load.stop();
+                                unlockButton();
+                                log.append("\n" + DateFormat.getDateTimeInstance().format(new Date()));
+                            }
+                        });
+                    }
+                });
+            }
         });
 
         btn_test2.setOnClickListener(new View.OnClickListener() {
@@ -214,10 +215,10 @@ public class MainActivity extends AppCompatActivity {
                 lockButton();
                 final String[] timeGPU = new String[1];
                 final String[] timeCPU = new String[1];
-                iteration=2;
-                wa=16;
-                wb=24;
-                spinner2.setSelection(iteration-1);
+                iteration = 2;
+                wa = 16;
+                wb = 24;
+                spinner2.setSelection(iteration - 1);
                 spinner1.setSelection(2);
                 meanTimeGPU = 0;
                 meanTimeCPU = 0;
@@ -237,18 +238,18 @@ public class MainActivity extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    log.append("\n\nReplication "+(finalI +1)+" is running...");
-                                    log.append("\n"+ DateFormat.getDateTimeInstance().format(new Date()));
+                                    log.append("\n\nReplication " + (finalI + 1) + " is running...");
+                                    log.append("\n" + DateFormat.getDateTimeInstance().format(new Date()));
                                 }
                             });
                             matrixMul(getApplicationContext(), wa, wb, wa, ip, port);
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    meanTimeGPU = (meanTimeGPU / iteration)/1000;
+                                    meanTimeGPU = (meanTimeGPU / iteration) / 1000;
                                     timeGPU[0] = String.format("%.2f", meanTimeGPU);
                                     text_resGPU.setText(timeGPU[0] + " sec");
-                                    meanTimeCPU = (meanTimeCPU / iteration)/1000;
+                                    meanTimeCPU = (meanTimeCPU / iteration) / 1000;
                                     timeCPU[0] = String.format("%.2f", meanTimeCPU);
                                     text_resCPU.setText(timeCPU[0] + " sec");
                                 }
@@ -264,17 +265,18 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }, new Completion<Void>() {
                     @Override
-                    public void onSuccess(Context context,Void v) {
-                        SimpleToast.ok(getApplicationContext(),"Task completed!");
+                    public void onSuccess(Context context, Void v) {
+                        SimpleToast.ok(getApplicationContext(), "Task completed!");
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 load.stop();
                                 unlockButton();
-                                log.append("\n"+ DateFormat.getDateTimeInstance().format(new Date()));
+                                log.append("\n" + DateFormat.getDateTimeInstance().format(new Date()));
                             }
                         });
                     }
+
                     @Override
                     public void onError(Context context, Exception e) {
                         SimpleToast.error(getApplicationContext(), "Server not available!");
@@ -283,7 +285,7 @@ public class MainActivity extends AppCompatActivity {
                             public void run() {
                                 load.stop();
                                 unlockButton();
-                                log.append("\n"+ DateFormat.getDateTimeInstance().format(new Date()));
+                                log.append("\n" + DateFormat.getDateTimeInstance().format(new Date()));
                             }
                         });
                     }
@@ -304,25 +306,26 @@ public class MainActivity extends AppCompatActivity {
                                 text_resCPU.setText("");
                                 text_resGPU.setText("");
                                 load.start();
-                                log.append("\n"+ DateFormat.getDateTimeInstance().format(new Date()));
+                                log.append("\n" + DateFormat.getDateTimeInstance().format(new Date()));
                             }
                         });
-                        test_all4(ip,port);
+                        test_all4(ip, port);
                         return null;
                     }
                 }, new Completion<Void>() {
                     @Override
-                    public void onSuccess(Context context,Void v) {
-                        SimpleToast.ok(getApplicationContext(),"Task completed!");
+                    public void onSuccess(Context context, Void v) {
+                        SimpleToast.ok(getApplicationContext(), "Task completed!");
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 load.stop();
                                 unlockButton();
-                                log.append("\n"+ DateFormat.getDateTimeInstance().format(new Date()));
+                                log.append("\n" + DateFormat.getDateTimeInstance().format(new Date()));
                             }
                         });
                     }
+
                     @Override
                     public void onError(Context context, Exception e) {
                         SimpleToast.error(getApplicationContext(), "Server not available!");
@@ -331,7 +334,7 @@ public class MainActivity extends AppCompatActivity {
                             public void run() {
                                 load.stop();
                                 unlockButton();
-                                log.append("\n"+ DateFormat.getDateTimeInstance().format(new Date()));
+                                log.append("\n" + DateFormat.getDateTimeInstance().format(new Date()));
                             }
                         });
                     }
@@ -352,25 +355,26 @@ public class MainActivity extends AppCompatActivity {
                                 text_resCPU.setText("");
                                 text_resGPU.setText("");
                                 load.start();
-                                log.append("\n"+ DateFormat.getDateTimeInstance().format(new Date()));
+                                log.append("\n" + DateFormat.getDateTimeInstance().format(new Date()));
                             }
                         });
-                        test_all9(ip,port);
+                        test_all9(ip, port);
                         return null;
                     }
                 }, new Completion<Void>() {
                     @Override
-                    public void onSuccess(Context context,Void v) {
-                        SimpleToast.ok(getApplicationContext(),"Task completed!");
+                    public void onSuccess(Context context, Void v) {
+                        SimpleToast.ok(getApplicationContext(), "Task completed!");
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 load.stop();
                                 unlockButton();
-                                log.append("\n"+ DateFormat.getDateTimeInstance().format(new Date()));
+                                log.append("\n" + DateFormat.getDateTimeInstance().format(new Date()));
                             }
                         });
                     }
+
                     @Override
                     public void onError(Context context, Exception e) {
                         SimpleToast.error(getApplicationContext(), "Server not available!");
@@ -379,7 +383,7 @@ public class MainActivity extends AppCompatActivity {
                             public void run() {
                                 load.stop();
                                 unlockButton();
-                                log.append("\n"+ DateFormat.getDateTimeInstance().format(new Date()));
+                                log.append("\n" + DateFormat.getDateTimeInstance().format(new Date()));
                             }
                         });
                     }
@@ -392,60 +396,60 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 lockButton();
                 int position = spinner1.getSelectedItemPosition();
-                log.append("\n"+ DateFormat.getDateTimeInstance().format(new Date()));
+                log.append("\n" + DateFormat.getDateTimeInstance().format(new Date()));
                 log.append("\nMatrixMul Execution : ");
                 final String[] timeGPU = new String[1];
                 final String[] timeCPU = new String[1];
 
-                switch(position) {
+                switch (position) {
                     case 0:
-                        wa=4;
-                        wb=6;
+                        wa = 4;
+                        wb = 6;
                         break;
 
                     case 1:
-                        wa=8;
-                        wb=12;
+                        wa = 8;
+                        wb = 12;
                         break;
 
                     case 2:
-                        wa=16;
-                        wb=24;
+                        wa = 16;
+                        wb = 24;
                         break;
 
                     case 3:
-                        wa=24;
-                        wb=36;
+                        wa = 24;
+                        wb = 36;
                         break;
 
                     case 4:
-                        wa=32;
-                        wb=48;
+                        wa = 32;
+                        wb = 48;
                         break;
 
                     case 5:
-                        wa=40;
-                        wb=60;
+                        wa = 40;
+                        wb = 60;
                         break;
 
                     case 6:
-                        wa=48;
-                        wb=72;
+                        wa = 48;
+                        wb = 72;
                         break;
 
                     case 7:
-                        wa=56;
-                        wb=84;
+                        wa = 56;
+                        wb = 84;
                         break;
 
                     case 8:
-                        wa=64;
-                        wb=96;
+                        wa = 64;
+                        wb = 96;
                         break;
 
                     default:
-                        wa=8;
-                        wb=12;
+                        wa = 8;
+                        wb = 12;
                         break;
                 }
                 meanTimeGPU = 0;
@@ -453,7 +457,7 @@ public class MainActivity extends AppCompatActivity {
                 Tasks.executeInBackground(getApplicationContext(), new BackgroundWork<Void>() {
                     @Override
                     public Void doInBackground() throws Exception {
-                        iteration= spinner2.getSelectedItemPosition()+1;
+                        iteration = spinner2.getSelectedItemPosition() + 1;
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -467,17 +471,17 @@ public class MainActivity extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    log.append("\n\nReplication "+(finalI +1)+" is running...");
+                                    log.append("\n\nReplication " + (finalI + 1) + " is running...");
                                 }
                             });
                             matrixMul(getApplicationContext(), wa, wb, wa, ip, port);
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    meanTimeGPU = (meanTimeGPU / iteration)/1000;
+                                    meanTimeGPU = (meanTimeGPU / iteration) / 1000;
                                     timeGPU[0] = String.format("%.2f", meanTimeGPU);
                                     text_resGPU.setText(timeGPU[0] + " sec");
-                                    meanTimeCPU = (meanTimeCPU / iteration)/1000;
+                                    meanTimeCPU = (meanTimeCPU / iteration) / 1000;
                                     timeCPU[0] = String.format("%.2f", meanTimeCPU);
                                     text_resCPU.setText(timeCPU[0] + " sec");
                                 }
@@ -494,17 +498,18 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }, new Completion<Void>() {
                     @Override
-                    public void onSuccess(Context context,Void v) {
-                        SimpleToast.ok(getApplicationContext(),"Task completed!");
+                    public void onSuccess(Context context, Void v) {
+                        SimpleToast.ok(getApplicationContext(), "Task completed!");
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 load.stop();
                                 unlockButton();
-                                log.append("\n"+ DateFormat.getDateTimeInstance().format(new Date()));
+                                log.append("\n" + DateFormat.getDateTimeInstance().format(new Date()));
                             }
                         });
                     }
+
                     @Override
                     public void onError(Context context, Exception e) {
                         SimpleToast.error(getApplicationContext(), "Server not available!");
@@ -513,7 +518,7 @@ public class MainActivity extends AppCompatActivity {
                             public void run() {
                                 load.stop();
                                 unlockButton();
-                                log.append("\n"+ DateFormat.getDateTimeInstance().format(new Date()));
+                                log.append("\n" + DateFormat.getDateTimeInstance().format(new Date()));
                             }
                         });
                     }
@@ -531,7 +536,7 @@ public class MainActivity extends AppCompatActivity {
         return data;
     }
 
-    public  void matrixMul(Context x, int widthA, int heightA, int widthB, String ip, String port) throws IOException {
+    public void matrixMul(Context x, int widthA, int heightA, int widthB, String ip, String port) throws IOException {
 
 
         long time1, time2;
@@ -547,11 +552,11 @@ public class MainActivity extends AppCompatActivity {
         driver.cuInit(0);
         time1 = System.currentTimeMillis();
         String context = driver.cuCtxCreate(0, 0);
-        final String nameDevice = driver.cuDeviceGetName(255,0);
+        final String nameDevice = driver.cuDeviceGetName(255, 0);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                log.append("\nDevice name: "+nameDevice);
+                log.append("\nDevice name: " + nameDevice);
 
             }
         });
@@ -669,8 +674,8 @@ public class MainActivity extends AppCompatActivity {
 
         time2 = System.currentTimeMillis();
 
-        final long finalTime =time2-time1;
-        final float timeF= Float.valueOf(finalTime)/1000;
+        final long finalTime = time2 - time1;
+        final float timeF = Float.valueOf(finalTime) / 1000;
         final float[] finalH_C = h_C;
         runOnUiThread(new Runnable() {
             @Override
@@ -709,8 +714,8 @@ public class MainActivity extends AppCompatActivity {
         time2 = System.currentTimeMillis();
         meanTimeCPU = meanTimeCPU + (time2 - time1);
 
-        final long finalTime3 = time2-time1;
-        final float finalTimeF = Float.valueOf(finalTime3)/1000;
+        final long finalTime3 = time2 - time1;
+        final float finalTimeF = Float.valueOf(finalTime3) / 1000;
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -758,83 +763,76 @@ public class MainActivity extends AppCompatActivity {
 
 
         final int[] size_label = new int[4]; //new int[5]
-        size_label[0]=128 * 192;
-        size_label[1]=256 * 384;
-        size_label[2]=512 * 768;
-        size_label[3]=768 * 1152;
+        size_label[0] = 128 * 192;
+        size_label[1] = 256 * 384;
+        size_label[2] = 512 * 768;
+        size_label[3] = 768 * 1152;
         final String[] size_label_strings = new String[4];
-        size_label_strings[0]="A[128,192] * B[128,128]";
-        size_label_strings[1]="A[256,384] * B[256,256]";
-        size_label_strings[2]="A[512,768] * B[512,512]";
-        size_label_strings[3]="A[768,1152] * B[768,768]";
-        //size_label[4]=1024 * 1536;
+        size_label_strings[0] = "A[128,192] * B[128,128]";
+        size_label_strings[1] = "A[256,384] * B[256,256]";
+        size_label_strings[2] = "A[512,768] * B[512,512]";
+        size_label_strings[3] = "A[768,1152] * B[768,768]";
 
-        for(int i = 0; i<size_label.length; i++){
-            final int finalI = i;
-            final int finalI1 = i;
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    log.append("\nTest: " + (finalI+1) +" size Matrix C result : " + size_label_strings[finalI1]);
-                }
-            });
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < size_label.length; i++)
+                log.append("\nTest: " + (i + 1) + " size Matrix C result : " + size_label_strings[i]);
+            }
+        });
 
-        final float[] TimeGPU_test = new float[4]; //new float[5]
-        final float[] TimeCPU_test = new float[4]; //new float[5]
+        final float[] TimeGPU_test = new float[4];
+        final float[] TimeCPU_test = new float[4];
 
 
         meanTimeGPU = 0;
         meanTimeCPU = 0;
         matrixMul(getApplicationContext(), 4, 6, 4, ip, port);
-        TimeGPU_test[0] = meanTimeGPU/ 1000;
-        TimeCPU_test[0] = meanTimeCPU/ 1000;
-        drawLineGraph(size_label,TimeCPU_test,TimeGPU_test,1);
+        TimeGPU_test[0] = meanTimeGPU / 1000;
+        TimeCPU_test[0] = meanTimeCPU / 1000;
+        drawLineGraph(size_label, TimeCPU_test, TimeGPU_test, 1);
 
         meanTimeGPU = 0;
         meanTimeCPU = 0;
         matrixMul(getApplicationContext(), 8, 12, 8, ip, port);
-        TimeGPU_test[1] = meanTimeGPU/ 1000;
-        TimeCPU_test[1] = meanTimeCPU/ 1000;
-        drawLineGraph(size_label,TimeCPU_test,TimeGPU_test,2);
+        TimeGPU_test[1] = meanTimeGPU / 1000;
+        TimeCPU_test[1] = meanTimeCPU / 1000;
+        drawLineGraph(size_label, TimeCPU_test, TimeGPU_test, 2);
 
         meanTimeGPU = 0;
         meanTimeCPU = 0;
         matrixMul(getApplicationContext(), 16, 24, 16, ip, port);
-        TimeGPU_test[2] = meanTimeGPU/ 1000;
-        TimeCPU_test[2] = meanTimeCPU/ 1000;
-        drawLineGraph(size_label,TimeCPU_test,TimeGPU_test,3);
+        TimeGPU_test[2] = meanTimeGPU / 1000;
+        TimeCPU_test[2] = meanTimeCPU / 1000;
+        drawLineGraph(size_label, TimeCPU_test, TimeGPU_test, 3);
 
         meanTimeGPU = 0;
         meanTimeCPU = 0;
         matrixMul(getApplicationContext(), 24, 36, 24, ip, port);
-        TimeGPU_test[3] = meanTimeGPU/ 1000;
-        TimeCPU_test[3] = meanTimeCPU/ 1000;
-        drawLineGraph(size_label,TimeCPU_test,TimeGPU_test,4);
+        TimeGPU_test[3] = meanTimeGPU / 1000;
+        TimeCPU_test[3] = meanTimeCPU / 1000;
+        drawLineGraph(size_label, TimeCPU_test, TimeGPU_test, 4);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
 
-        for(int i = 0; i<size_label.length; i++) {
-            final int finalI = i;
-            final int finalI1 = i;
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    log.append("\nTest: " + (finalI+1) +" time GPU with GVirtuS: " + TimeGPU_test[finalI1]+" sec");
+                for (int i = 0; i < TimeGPU_test.length; i++) {
+                    log.append("\nTest: " + (i + 1) + " time GPU with GVirtuS: " + TimeGPU_test[i] + " sec");
                 }
-            });
-        }
+            }
+        });
 
-        for(int i = 0; i<size_label.length; i++) {
-            final int finalI = i;
-            final int finalI1 = i;
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    log.append("\nTest: " + (finalI+1) +" time local CPU : " + TimeCPU_test[finalI1] + "sec");
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < TimeCPU_test.length; i++) {
+                    log.append("\nTest: " + (i + 1) + " time local CPU : " + TimeCPU_test[i] + "sec");
                 }
-            });
-        }
-
+            }
+        });
     }
+
+
 
     void test_all9(String ip, String port) throws IOException {
 
@@ -870,16 +868,13 @@ public class MainActivity extends AppCompatActivity {
         size_label_strings[7]="A[1792,2688] * B[1792,1792]";
         size_label_strings[8]="A[2048,3072] * B[2048,2048]";
 
-        for(int i = 0; i<size_label.length; i++){
-            final int finalI = i;
-            final int finalI1 = i;
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    log.append("\nTest: " + (finalI+1) +" size Matrix C result : " + size_label_strings[finalI1]);
-                }
-            });
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i = 0; i<size_label.length; i++)
+                log.append("\nTest: " + (i+1) +" size Matrix C result : " + size_label_strings[i]);
+            }
+        });
 
         final float[] TimeGPU_test = new float[9]; //new float[5]
         final float[] TimeCPU_test = new float[9]; //new float[5]
@@ -948,27 +943,21 @@ public class MainActivity extends AppCompatActivity {
         TimeCPU_test[8] = meanTimeCPU/ 1000;
         drawLineGraph(size_label,TimeCPU_test,TimeGPU_test,9);
 
-        for(int i = 0; i<size_label.length; i++) {
-            final int finalI = i;
-            final int finalI1 = i;
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    log.append("\nTest: " + (finalI+1) +" time GPU with GVirtuS: " + TimeGPU_test[finalI1]+" sec");
-                }
-            });
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i = 0; i<size_label.length; i++)
+                    log.append("\nTest: " + (i+1) +" time GPU with GVirtuS: " + TimeGPU_test[i]+" sec");
+            }
+        });
 
-        for(int i = 0; i<size_label.length; i++) {
-            final int finalI = i;
-            final int finalI1 = i;
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    log.append("\nTest: " + (finalI+1) +" time local CPU : " + TimeCPU_test[finalI1] + "sec");
-                }
-            });
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i = 0; i<size_label.length; i++)
+                log.append("\nTest: " + (i+1) +" time local CPU : " + TimeCPU_test[i] + "sec");
+            }
+        });
 
     }
 
@@ -1039,9 +1028,7 @@ public class MainActivity extends AppCompatActivity {
         graph.getLegendRenderer().setVisible(true);
         graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
 
-        StaticLabelsFormatter staticf = new StaticLabelsFormatter(graph);
-        staticf.setHorizontalLabels(new String[]{"",""});
-        graph.getGridLabelRenderer().setLabelFormatter(staticf);
+
         graph.getGridLabelRenderer().setHorizontalAxisTitle("Size of test");
         graph.getGridLabelRenderer().setVerticalAxisTitle("Time in sec");
 
@@ -1050,7 +1037,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    void drawLineGraph(int[] size_label, float []TimeCPU_test, float[] TimeGPU_test,int number_of_tests){
+    void drawLineGraph(int[] size_label, float [] TimeCPU_test, float[] TimeGPU_test,int number_of_tests){
         GraphView graph = (GraphView) findViewById(R.id.graph);
         graph.removeAllSeries();
         graph.getViewport().setXAxisBoundsManual(true);
@@ -1058,9 +1045,13 @@ public class MainActivity extends AppCompatActivity {
         graph.getViewport().setMaxX(size_label[size_label.length-1]+100000);
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinY(0);
-        float[] ord_TimeCPU_test = TimeCPU_test;
+        float[] ord_TimeCPU_test = TimeCPU_test.clone();
+        float[] ord_TimeGPU_test = TimeGPU_test.clone();
+        Arrays.sort(ord_TimeGPU_test);
         Arrays.sort(ord_TimeCPU_test);
+        if (ord_TimeCPU_test[ord_TimeCPU_test.length-1] > ord_TimeGPU_test[ord_TimeGPU_test.length-1])
         graph.getViewport().setMaxY(ord_TimeCPU_test[ord_TimeCPU_test.length-1]);
+        else graph.getViewport().setMaxY(ord_TimeGPU_test[ord_TimeGPU_test.length-1]);
 
         //CPU
         DataPoint[] arrDataPointCPU = new DataPoint[number_of_tests];
@@ -1089,9 +1080,6 @@ public class MainActivity extends AppCompatActivity {
         graph.getLegendRenderer().setVisible(true);
         graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
 
-        StaticLabelsFormatter staticf = new StaticLabelsFormatter(graph);
-        staticf.setHorizontalLabels(new String[]{"","","",""});
-        graph.getGridLabelRenderer().setLabelFormatter(staticf);
         graph.getGridLabelRenderer().setHorizontalAxisTitle("Size of test");
         graph.getGridLabelRenderer().setVerticalAxisTitle("Time in sec");
         graph.addSeries(series1);
