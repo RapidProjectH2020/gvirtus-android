@@ -1104,7 +1104,7 @@ public class MainActivity extends AppCompatActivity {
     private Boolean check3gConnection() {
         ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo m3g = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        if (m3g.isConnected()) {
+        if if (m3g.isConnected() && m3g!= null) {
             return true;
         } else return false;
     }
@@ -1112,7 +1112,7 @@ public class MainActivity extends AppCompatActivity {
     private Boolean checkWifiConnection() {
         ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (mWifi.isConnected()) {
+        if (mWifi.isConnected() && mWifi!= null ){
             return true;
         } else return false;
     }
